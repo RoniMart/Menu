@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hamburger Menu</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      /* Header */
+      .header {
+        background-color: #21356d;
+        color: white;
+        padding: 1rem;
+        position: relative;
+      }
+
+      /* Hamburger Button */
+      .hamburger {
+        display: block;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.3s;
+      }
+
+      /* Hide checkbox */
+      #menu-toggle {
+        display: none;
+      }
+
+      /* Menu Styles */
+      .menu {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: #2c3e50;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+      }
+
+      /* Show menu when checkbox is checked */
+      #menu-toggle:checked ~ .menu {
+        left: 0;
+      }
+
+      /* Hamburger animation when menu is open */
+      #menu-toggle:checked ~ .header .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      #menu-toggle:checked ~ .header .hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+
+      #menu-toggle:checked ~ .header .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      /* Menu Items */
+      .menu-item {
+        border-bottom: 1px solid #70a2d4;
+      }
+
+      .menu-item > a {
+        display: block;
+        padding: 15px 20px;
+        color: #ecf0f1;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .menu-item > a:hover {
+        background-color: #234f7b;
+      }
+
+      /* Submenu Styles */
+      .submenu {
+        background-color: #0f3354;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .menu-item:hover .submenu {
+        max-height: 200px;
+      }
+
+      .submenu-item {
+        border-bottom: 1px solid #2c3e50;
+      }
+
+      .submenu-item:last-child {
+        border-bottom: none;
+      }
+
+      .submenu-item a {
+        display: block;
+        padding: 12px 40px;
+        color: #bdc3c7;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.3s;
+      }
+
+      .submenu-item a:hover {
+        background-color: #253d54;
+        color: #ecf0f1;
+      }
+
+      /* Overlay */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 999;
+      }
+
+      #menu-toggle:checked ~ .overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .main-content h1 {
+        color: #000000;
+        margin-bottom: 1rem;
+      }
+
+      .main-content p {
+        line-height: 1.6;
+        color: #000000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hidden checkbox for menu toggle -->
+    <input type="checkbox" id="menu-toggle" />
+
+    <!-- Header with hamburger button -->
+    <header class="header">
+      <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <h2 style="display: inline-block; margin-left: 20px">Work Work Work</h2>
+    </header>
+
+    <!-- Menu -->
+    <nav class="menu">
+      <!-- Section 1 -->
+      <div class="menu-item">
+        <a href="#home">Home</a>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="menu-item">
+        <a href="#about">About</a>
+      </div>
+
+      <!-- Section 3 with 3 child sections -->
+      <div class="menu-item">
+        <a href="#important">Important</a>
+        <div class="submenu">
+          <div class="submenu-item">
+            <a href="#maybe">Maybe</a>
+          </div>
+          <div class="submenu-item">
+            <a href="#whoknows">Who knows</a>
+          </div>
+          <div class="submenu-item">
+            <a href="#thatwhatshesaid">That what she said</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Overlay to close menu when clicked -->
+    <label for="menu-toggle" class="overlay"></label>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Something very important</h1>
+      <p>bla bla bla</p>
+    </main>
+  </body>
+</html>
